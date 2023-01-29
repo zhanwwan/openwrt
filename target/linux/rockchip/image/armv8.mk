@@ -5,6 +5,16 @@
 # FIT will be loaded at 0x02080000. Leave 16M for that, align it to 2M and load the kernel after it.
 KERNEL_LOADADDR := 0x03200000
 
+define Device/rockchip_bpi-r2-pro
+  DEVICE_VENDOR := Rockchip
+  DEVICE_MODEL := Bananapi-R2 Pro
+  SOC := rk3568
+  SUPPORTED_DEVICES := rockchip,rk3568-bpi-r2pro
+  UBOOT_DEVICE_NAME := bpi-r2-pro-rk3568
+  IMAGE/sysupgrade.img.gz := boot-common | boot-script quartz64-a | pine64-img | gzip | append-metadata
+endef
+TARGET_DEVICES += rockchip_bpi-r2-pro
+
 define Device/firefly_roc-cc
   DEVICE_VENDOR := Firefly
   DEVICE_MODEL := ROC-RK3328-CC
@@ -99,12 +109,3 @@ define Device/radxa_rock-pi-4
 endef
 TARGET_DEVICES += radxa_rock-pi-4
 
-define Device/rockchip_bpi-r2-pro
-  DEVICE_VENDOR := Rockchip
-  DEVICE_MODEL := Bananapi-R2 Pro
-  SOC := rk3568
-  SUPPORTED_DEVICES := rockchip,rk3568-bpi-r2pro
-  UBOOT_DEVICE_NAME := bpi-r2-pro-rk3568
-  IMAGE/sysupgrade.img.gz := boot-common | boot-script quartz64-a | pine64-img | gzip | append-metadata
-endef
-TARGET_DEVICES += rockchip_bpi-r2-pro
